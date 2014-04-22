@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "ovrlay img - Chrome extension",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Chrome extension that creates semi transparent image that overlays page making fine tuning of design easier.",
+    "description": "The description of the application"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ovrlay-img-extension",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "jquery-ui": "~1.10.4",
+    "dropzone": "~3.8.4"
+  },
+  "devDependencies": {}
+}
