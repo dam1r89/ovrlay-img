@@ -19,7 +19,7 @@ var $img, $overlay,
     },
     settings,
     SETTINGS_LOCAL_STORAGE_KEY = 'settings';
-    BASE_URL = 'http://projects.me/overlay-extension/';
+    BASE_URL = 'http://projects.me/ovrlay-img/';
     FILE_UPLOAD_URL = BASE_URL + 'backend/';
 
 
@@ -118,7 +118,7 @@ function initDropzone(){
         paramName: 'file'
     });
 
-    dropzone.on('success', function(notUsed, response){
+    dropzone.on('success', function(file, response){
         var imageUrl;
 
         if (response.success){
@@ -126,7 +126,16 @@ function initDropzone(){
             imageUrl = response.data.imageUrl;
 
             $img.prop('src', imageUrl);
-            dropzone.removeAllFiles();
+        dropzone.removeAllFiles();
+
+            settings.css = {
+                top: 40,
+                left: 80
+            }
+
+            $img.css(settings.css);
+
+            settings.imageScale = 1;
 
             settings.imageUrl = imageUrl;
             saveSettings();
@@ -136,6 +145,12 @@ function initDropzone(){
 
 
     })
+
+    dropzone.on('error', function(file, response){
+        alert(response.errorMessage);
+        dropzone.removeAllFiles();
+
+    });
 
 }
 

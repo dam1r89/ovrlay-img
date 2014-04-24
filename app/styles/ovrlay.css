@@ -15,7 +15,7 @@
     transition: -webkit-transform 300ms;
 
 }
-.ovrlay-wrapper .ovrlay-wrapper{
+.ovrlay-wrapper{
     position: fixed;
     top: 0;
     left: 0;
@@ -24,7 +24,9 @@
     z-index: 9999;
 
 }
-.ovrlay-wrapper a{
+.ovrlay-wrapper a,
+.ovrlay-wrapper a:visited,
+.ovrlay-wrapper a:active{
     text-decoration: none;
     color: white;
     text-shadow: 0 0 3px black;
