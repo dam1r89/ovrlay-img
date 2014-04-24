@@ -18,9 +18,8 @@ var $img, $overlay,
         }
     },
     settings,
-    SETTINGS_LOCAL_STORAGE_KEY = 'settings';
-    BASE_URL = 'http://projects.me/ovrlay-img/';
-    FILE_UPLOAD_URL = BASE_URL + 'backend/';
+    SETTINGS_LOCAL_STORAGE_KEY = 'settings',
+    FILE_UPLOAD_URL = 'http://damirmiladinov.com/ovrlay/';
 
 
 
@@ -40,18 +39,20 @@ function createOverlayHtml() {
     $img = $('<img class="ovrlay-image">')
         .prop('src', settings.imageUrl)
         .css(settings.css)
-        .draggable({stop: saveSettings });
+        .draggable({
+            stop: saveSettings
+        });
 
     $controles = $('<div class="controles" />');
 
     $zoomIn = $('<a href="#" class="control zoom-in">+</a>')
-                .click(zoomIn);
+        .click(zoomIn);
 
     $zoomOut = $('<a href="#" class="control zoom-out">-</a>')
-                .click(zoomOut);
+        .click(zoomOut);
 
     $dropzoneToggle = $('<a href="#" class="control control-upload">Upload<br>Image</a>')
-                .click(toggleDropzone);
+        .click(toggleDropzone);
 
 
     $dropzone = $('<div id="dropzone" class="dropzone" />');
@@ -75,41 +76,41 @@ function createOverlayHtml() {
 
 }
 
-function saveSettings(){
+function saveSettings() {
 
     settings.css = $img.css(['top', 'left', 'transform']);
 
     LocalStorage.set(SETTINGS_LOCAL_STORAGE_KEY, settings);
 }
 
-function loadSettings(){
+function loadSettings() {
 
     settings = LocalStorage.get(SETTINGS_LOCAL_STORAGE_KEY, defaultSettings);
 
 }
 
-function zoomIn(e){
+function zoomIn(e) {
     e.preventDefault();
     settings.imageScale += 0.05;
     setScale();
 }
 
-function setScale(){
+function setScale() {
 
     $img.css({
-        transform: 'scale(' +  settings.imageScale + ')'
+        transform: 'scale(' + settings.imageScale + ')'
     });
     saveSettings();
 
 }
 
-function zoomOut(e){
+function zoomOut(e) {
     e.preventDefault();
     settings.imageScale -= 0.05;
     setScale();
 }
 
-function initDropzone(){
+function initDropzone() {
 
     var dropzone = new Dropzone('#dropzone', {
         url: FILE_UPLOAD_URL,
@@ -118,15 +119,15 @@ function initDropzone(){
         paramName: 'file'
     });
 
-    dropzone.on('success', function(file, response){
+    dropzone.on('success', function(file, response) {
         var imageUrl;
 
-        if (response.success){
+        if (response.success) {
 
             imageUrl = response.data.imageUrl;
 
             $img.prop('src', imageUrl);
-        dropzone.removeAllFiles();
+            dropzone.removeAllFiles();
 
             settings.css = {
                 top: 40,
@@ -146,7 +147,7 @@ function initDropzone(){
 
     })
 
-    dropzone.on('error', function(file, response){
+    dropzone.on('error', function(file, response) {
         alert(response.errorMessage);
         dropzone.removeAllFiles();
 
@@ -154,7 +155,6 @@ function initDropzone(){
 
 }
 
-function toggleDropzone(){
+function toggleDropzone() {
     $dropzone.toggle();
 }
-
