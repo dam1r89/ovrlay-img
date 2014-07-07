@@ -120,13 +120,13 @@ function zoomOut(e) {
 
 function opacityInc(e){
     e.preventDefault();
-    settings.css.opacity = parseFloat(settings.css.opacity) + 0.05;
+    settings.css.opacity = Math.min(1, parseFloat(settings.css.opacity) + 0.05);
     setScale();
 }
 
 function opacityDec(e){
     e.preventDefault();
-    settings.css.opacity -= 0.05;
+    settings.css.opacity = Math.max(0.05, settings.css.opacity - 0.05);
     setScale();
 }
 
