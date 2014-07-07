@@ -5,6 +5,7 @@ chrome.runtime.onMessage.addListener(function(request, response) {
 });
 
 var isOverlayHtmlCreated = false;
+
 var $img, $overlay,
     $dropzone,
     $zoomIn,
@@ -13,6 +14,7 @@ var $img, $overlay,
         imageScale: 1,
         imageUrl: '',
         css: {
+            opacity: 0.6,
             left: 80,
             top: 40
         }
@@ -51,6 +53,13 @@ function createOverlayHtml() {
     $zoomOut = $('<a href="#" class="control zoom-out">-</a>')
         .click(zoomOut);
 
+    $opacityInc = $('<a href="#" class="control opacity-inc">Inc</a>')
+        .click(opacityInc);
+
+    $opacityDec = $('<a href="#" class="control opacity-dec">Dec</a>')
+        .click(opacityDec);
+
+
     $dropzoneToggle = $('<a href="#" class="control control-upload">Upload<br>Image</a>')
         .click(toggleDropzone);
 
@@ -58,9 +67,7 @@ function createOverlayHtml() {
     $dropzone = $('<div id="dropzone" class="dropzone" />');
 
     $controles
-        .append($zoomIn)
-        .append($zoomOut)
-        .append($dropzoneToggle)
+        .append($zoomIn, $zoomOut, $dropzoneToggle, $opacityInc, $opacityDec);
 
 
     $overlay = $('<div class="ovrlay-wrapper">')
@@ -78,7 +85,7 @@ function createOverlayHtml() {
 
 function saveSettings() {
 
-    settings.css = $img.css(['top', 'left', 'transform']);
+    settings.css = $img.css(['top', 'left', 'transform', 'opacity']);
 
     LocalStorage.set(SETTINGS_LOCAL_STORAGE_KEY, settings);
 }
@@ -98,7 +105,8 @@ function zoomIn(e) {
 function setScale() {
 
     $img.css({
-        transform: 'scale(' + settings.imageScale + ')'
+        transform: 'scale(' + settings.imageScale + ')',
+        opacity: settings.css.opacity
     });
     saveSettings();
 
@@ -109,6 +117,19 @@ function zoomOut(e) {
     settings.imageScale -= 0.05;
     setScale();
 }
+
+function opacityInc(e){
+    e.preventDefault();
+    settings.css.opacity = parseFloat(settings.css.opacity) + 0.05;
+    setScale();
+}
+
+function opacityDec(e){
+    e.preventDefault();
+    settings.css.opacity -= 0.05;
+    setScale();
+}
+
 
 function initDropzone() {
 

@@ -4,6 +4,8 @@ Chrome extension that creates semi transparent image that overlays page making f
 
 After installing extension, button allows you to toggle overlay on and off.
 
+[Download from webstore](https://chrome.google.com/webstore/detail/ovrlay-img/ediekehbnlmhejmeflhngbaipmggnmba?hl=en)
+
 ##TODO
 
 - changing opacity

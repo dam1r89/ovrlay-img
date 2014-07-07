@@ -25,7 +25,6 @@
             get: getFromLocalStorage
         }
     }
-    console.log('adding local storage');
     window.LocalStorage = LocalStorage();
 
 })(window);
