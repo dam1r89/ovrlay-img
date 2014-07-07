@@ -13,6 +13,7 @@ var $img, $overlay,
     defaultSettings = {
         imageScale: 1,
         imageUrl: '',
+        visible: false,
         css: {
             opacity: 0.6,
             left: 80,
@@ -23,6 +24,15 @@ var $img, $overlay,
     SETTINGS_LOCAL_STORAGE_KEY = 'settings',
     FILE_UPLOAD_URL = 'http://damirmiladinov.com/ovrlay/';
 
+init();
+
+function init(){
+    console.log('initialising');
+    loadSettings();
+    if (settings.visible) {
+        toggleOverlay();
+    }
+}
 
 
 function toggleOverlay() {
@@ -30,8 +40,11 @@ function toggleOverlay() {
     if (!isOverlayHtmlCreated) {
         createOverlayHtml();
     }
-
     $overlay.toggle();
+
+    settings.visible = $overlay.is(':visible');
+
+    saveSettings();
 }
 
 function createOverlayHtml() {
