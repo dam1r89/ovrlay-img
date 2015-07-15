@@ -1,8 +1,8 @@
 {
-    "name": "__MSG_appName__",
-    "version": "0.0.2",
+    "name": "Ovrlay img",
+    "version": "0.0.3",
     "manifest_version": 2,
-    "description": "__MSG_appDescription__",
+    "description": "Chrome extension that creates semi transparent image that overlays page making fine tuning of design easier. ",
     "icons": {
         "16": "images/16.png",
         "128": "images/128.png"

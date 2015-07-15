@@ -8,8 +8,8 @@ After installing extension, button allows you to toggle overlay on and off.
 
 ##TODO
 
-- changing opacity
-- zooming from the centar of the screen
+- zooming from the center of the screen
+- toggle click through
 
 
 ![screenshots](http://i.imgur.com/UhnFddK.gif)
