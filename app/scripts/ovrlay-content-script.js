@@ -31,6 +31,7 @@ function init(){
     loadSettings();
     if (settings.visible) {
         toggleOverlay();
+        setScale();
     }
 }
 
@@ -98,7 +99,7 @@ function createOverlayHtml() {
 
 function saveSettings() {
 
-    settings.css = $img.css(['top', 'left', 'transform', 'opacity']);
+    settings.css = $img.css(['top', 'left', 'opacity']);
 
     LocalStorage.set(SETTINGS_LOCAL_STORAGE_KEY, settings);
 }
