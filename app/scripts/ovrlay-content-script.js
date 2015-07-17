@@ -27,11 +27,9 @@ var $img, $overlay,
 init();
 
 function init(){
-    console.log('initialising');
     loadSettings();
     if (settings.visible) {
         toggleOverlay();
-        setScale();
     }
 }
 
@@ -40,6 +38,7 @@ function toggleOverlay() {
 
     if (!isOverlayHtmlCreated) {
         createOverlayHtml();
+        setScale();
     }
     $overlay.toggle();
 
